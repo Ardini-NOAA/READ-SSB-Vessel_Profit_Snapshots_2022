@@ -210,7 +210,7 @@ gear_revenue_6 %>% knitr::kable(label = NA, caption = "Revenue by Primary Gear",
 gear_revenue_plot<- read.csv(file="Y:/Ardini_Cost_Survey/SAS_Cost_Survey/Profitability_Profiles/Calculate_Profit/Final/gear_boxplots.csv")
 gear_revenue_plot_2 <- subset(gear_revenue_plot, Gear!="Longline") #Eliminate Gear with n=3 or n=4
 gear_revenue_plot_3 <- ggplot(gear_revenue_plot_2, aes(x = Gear, y = total_revenue, fill=Gear)) + geom_boxplot(show.legend = FALSE, outlier.shape = NA)
-gear_revenue_plot_3 + coord_cartesian(ylim=c(0, 2000000)) + scale_y_continuous(breaks = seq(0, 2000000, by=250000))
+gear_revenue_plot_3 + coord_cartesian(ylim=c(0, 2000000)) + scale_y_continuous(breaks = seq(0, 2000000, by=250000)) +scale_fill_manual(values = c("Gillnet" = "#C6E6F0", "Handgear" = "#90DFE3", "Pot/Trap" = "#B1DC6B", "Scallop Dredge" = "#A8B8FF", "Trawl" = "#FFAB38"))
 ```
 <br>
 
@@ -244,7 +244,7 @@ options(knitr.kable.NA= "C*") #Confidential data indicator
 fmp_revenue_plot<- read.csv(file="Y:/Ardini_Cost_Survey/SAS_Cost_Survey/Profitability_Profiles/Calculate_Profit/Final/fmp_boxplots.csv")
 fmp_revenue_plot_2 <- subset(fmp_revenue_plot, Fishery!="Channeled Whelk" & Fishery!="Dogfish" & Fishery!="Herring" & Fishery!="Monkfish") #Eliminate Fishery with n=3 or n=4
 fmp_revenue_plot_3 <- ggplot(fmp_revenue_plot_2, aes(x = Fishery, y = total_revenue, fill=Fishery)) + geom_boxplot(show.legend = TRUE, outlier.shape = NA)
-fmp_revenue_plot_3 + coord_cartesian(ylim=c(0, 2000000)) + scale_y_continuous(breaks = seq(0, 2000000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())
+fmp_revenue_plot_3 + coord_cartesian(ylim=c(0, 2000000)) + scale_y_continuous(breaks = seq(0, 2000000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) +scale_fill_manual(values = c("Groundfish" = "#C6E6F0", "Highly Migratory Species" = "#90DFE3", "Lobster" = "#1EBEC7", "Scallop" = "#00797F", "Squid, Mackerel, Butterfish" = "#B1DC6B", "Striped Bass" = "#76BC21", "Summer Flounder, Scup, Black Sea Bass" = "#A8B8FF"))
 ```
 <br>
 
@@ -278,7 +278,7 @@ options(knitr.kable.NA= "C*") #Confidential data indicator
 gear_fmp_revenue_plot<- read.csv(file="Y:/Ardini_Cost_Survey/SAS_Cost_Survey/Profitability_Profiles/Calculate_Profit/Final/gear_fmp_boxplots.csv")
 gear_fmp_revenue_plot_2 <- subset(gear_fmp_revenue_plot, Gear_Fishery!="Gillnet-Monkfish" & Gear_Fishery!="Handgear-Other" & Gear_Fishery!="Longline-Highly Migratory Species" & Gear_Fishery!="Pot/Trap-Whelk" & Gear_Fishery!= "Trawl-Other") #Eliminate Gear_Fishery with n=3 or n=4
 gear_fmp_revenue_plot_3 <- ggplot(gear_fmp_revenue_plot_2, aes(x = Gear_Fishery, y = total_revenue, fill=Gear_Fishery)) + geom_boxplot(show.legend = TRUE, outlier.shape = NA)
-gear_fmp_revenue_plot_3 + coord_cartesian(ylim=c(0, 2000000)) + scale_y_continuous(breaks = seq(0, 2000000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())
+gear_fmp_revenue_plot_3 + coord_cartesian(ylim=c(0, 2000000)) + scale_y_continuous(breaks = seq(0, 2000000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) +scale_fill_manual(values = c("Gillnet-Other" = "#C6E6F0", "Handgear-Highly Migratory Species" = "#90DFE3", "Handgear-Striped Bass" = "#1EBEC7", "Handgear-Summer Flounder, Scup, BSB" = "#00797F", "Pot/Trap-Lobster" = "#B1DC6B", "Pot/Trap-Summer Flounder, Scup, BSB" = "#76BC21", "Scallop Dredge-Scallop" = "#A8B8FF", "Trawl-Groundfish" = "#FFAB38", "Trawl-Squid, Mackerel, Butterfish" = "#FF8400", "Trawl-Summer Flounder, Scup, BSB" = "#DB6015"))
 ```
 <br>
 
@@ -329,7 +329,7 @@ gear_dist3a$Category <- factor(gear_dist3a$Category, levels = c("Crew Payments",
 
 gear_dist3b <- subset(gear_dist3a, Gear!="Longline") #Eliminate Gear with n=3 or n=4
 
-ggplot(data=gear_dist3b, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Gear, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("palegreen2", "palegreen3", "steelblue1", "dodgerblue","steelblue3"))
+ggplot(data=gear_dist3b, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Gear, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("#B1DC6B", "#76BC21", "#90DFE3", "#1EBEC7","#00797F"))
 ```
 
 ```{r, echo=FALSE}
@@ -380,12 +380,12 @@ levels(fmp_dist3a$Category)
 fmp_dist3a$Category <- factor(fmp_dist3a$Category, levels = c("Crew Payments", "Trip Expenses", "Overhead", "Repairs/Upgrades", "Vessel Costs"))
 
 fmp_dist3b <- subset(fmp_dist3a, Fishery == "Groundfish" | Fishery == "Highly Migratory Species" | Fishery == "Lobster"| Fishery == "Scallop")
-ggplot(data=fmp_dist3b, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Fishery, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("palegreen2", "palegreen3", "steelblue1", "dodgerblue","steelblue3"))
+ggplot(data=fmp_dist3b, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Fishery, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("#B1DC6B", "#76BC21", "#90DFE3", "#1EBEC7","#00797F"))
 ```
 ```{r, fig.cap = "Distribution of Costs by Primary Fishery", fig.alt = "Pie chart by primary fishery showing the distribution of costs incurred. Five cost categories are presented- crew payments, trip expenses, overhead, repairs/upgrades, and vessel costs. Crew payments are highest in the scallop group, squid, mackerel, butterfish group, and groundfish group with the proportion of total costs from this cost category being 42.5%, 35.8%, and 35.3% respectively. Trip expenses are highest in the lobster group at 34.3% of total costs. Repairs/upgrades are highest in the handgear group at 43.5% of total costs. Overhead costs encompass a similar percentage of total costs for all fisheries, generally from 6-9%. Vessel costs are also relatively similar percentages, generally ranging from 7-18%.", fig.align='center', echo=FALSE, results='hide'}
 
 fmp_dist3c <- subset(fmp_dist3a, Fishery == "Squid, Mackerel, Butterfish" | Fishery == "Striped Bass" | Fishery == "Summer Flounder, Scup, Black Sea Bass")
-ggplot(data=fmp_dist3c, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Fishery, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("palegreen2", "palegreen3", "steelblue1", "dodgerblue","steelblue3"))
+ggplot(data=fmp_dist3c, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Fishery, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("#B1DC6B", "#76BC21", "#90DFE3", "#1EBEC7","#00797F"))
 ```
 
 ```{r, echo=FALSE}
@@ -436,15 +436,15 @@ levels(gear_fmp_dist3a$Category)
 gear_fmp_dist3a$Category <- factor(gear_fmp_dist3a$Category, levels = c("Crew Payments", "Trip Expenses", "Overhead", "Repairs/Upgrades", "Vessel Costs"))
 
 gear_fmp_dist3b <- subset(gear_fmp_dist3a, Gear_Fishery == "Handgear-Highly Migratory Species" | Gear_Fishery == "Handgear-Striped Bass" | Gear_Fishery == "Handgear-Summer Flounder, Scup, BSB")
-ggplot(data=gear_fmp_dist3b, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Gear_Fishery, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("palegreen2", "palegreen3", "steelblue1", "dodgerblue","steelblue3"))
+ggplot(data=gear_fmp_dist3b, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Gear_Fishery, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("#B1DC6B", "#76BC21", "#90DFE3", "#1EBEC7","#00797F"))
 
 gear_fmp_dist3c <- subset(gear_fmp_dist3a, Gear_Fishery == "Pot/Trap-Lobster" | Gear_Fishery == "Pot/Trap-Summer Flounder, Scup, BSB")
-ggplot(data=gear_fmp_dist3c, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Gear_Fishery, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("palegreen2", "palegreen3", "steelblue1", "dodgerblue","steelblue3"))
+ggplot(data=gear_fmp_dist3c, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Gear_Fishery, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("#B1DC6B", "#76BC21", "#90DFE3", "#1EBEC7","#00797F"))
 ```
 ```{r, fig.cap = "Distribution of Costs by Primary Gear/Fishery", fig.alt = "Pie chart by primary gear/fishery showing the distribution of costs incurred. Five cost categories are presented- crew payments, trip expenses, overhead, repairs/upgrades, and vessel costs. Trawl vessels, regardless of fishery, show a high crew expense of 34-36% of total costs. Pot/trap vessels show a high proportion of total costs as trip expenses with lobster vessels within that gear group at 34.3% and summer flounder, scup, black sea bass at 25.7%. Handgear vessels show a high proportion of total costs from repairs/upgrades with all fisheries at 30% or greater. Overhead costs encompass a similar percentage of total costs for all groups, generally from 4-10%. Vessel costs for trawl vessels are 6-10% across fisheries and 8% for the two pot/trap fisheries. Within the handgear group fisheries, vessel costs are a much more substantial portion of the total, ranging from 12-33%.", fig.align='center', echo=FALSE, results='hide'}
 
 gear_fmp_dist3d <- subset(gear_fmp_dist3a, Gear_Fishery == "Trawl-Groundfish" | Gear_Fishery == "Trawl-Squid, Mackerel, Butterfish" | Gear_Fishery == "Trawl-Summer Flounder, Scup, BSB")
-ggplot(data=gear_fmp_dist3d, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Gear_Fishery, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("palegreen2", "palegreen3", "steelblue1", "dodgerblue","steelblue3"))
+ggplot(data=gear_fmp_dist3d, aes(x="", y=percent, fill=Category)) + geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + facet_wrap(.~Gear_Fishery, ncol = 2) + theme_void() + theme(strip.clip = "off") + geom_text(aes(label=perc), position = position_stack(vjust = 0.5), size=3) + theme(legend.text = element_text(size=12), legend.title = element_text(size=12), strip.text.x = element_text(size=11)) + scale_fill_manual(values=c("#B1DC6B", "#76BC21", "#90DFE3", "#1EBEC7","#00797F"))
 ```
 
 ```{r, echo=FALSE}
@@ -493,7 +493,7 @@ options(knitr.kable.NA= "C*") #Confidential data indicator
 gear_profit<- read.csv(file="Y:/Ardini_Cost_Survey/SAS_Cost_Survey/Profitability_Profiles/Calculate_Profit/Final/gear_boxplots.csv")
 gear_profit_2 <- subset(gear_profit, Gear!="Longline") #Eliminate Gear with n=3 or n=4
 gear_op <- ggplot(gear_profit_2, aes(x = Gear, y = total_operating_profit, fill=Gear)) + geom_boxplot(show.legend = FALSE, outlier.shape = NA)
-gear_op + coord_cartesian(ylim=c(-250000, 1500000)) + scale_y_continuous(breaks = seq(-250000, 1500000, by=250000))
+gear_op + coord_cartesian(ylim=c(-250000, 1500000)) + scale_y_continuous(breaks = seq(-250000, 1500000, by=250000)) +scale_fill_manual(values = c("Gillnet" = "#C6E6F0", "Handgear" = "#90DFE3", "Pot/Trap" = "#B1DC6B", "Scallop Dredge" = "#A8B8FF", "Trawl" = "#FFAB38"))
 ```
 <br>
 
@@ -529,7 +529,7 @@ options(knitr.kable.NA= "C*") #Confidential data indicator
 fmp_profit<- read.csv(file="Y:/Ardini_Cost_Survey/SAS_Cost_Survey/Profitability_Profiles/Calculate_Profit/Final/fmp_boxplots.csv")
 fmp_profit_2 <- subset(fmp_profit, Fishery!="Channeled Whelk" & Fishery!="Dogfish" & Fishery!="Herring" & Fishery!="Monkfish") #Eliminate Fishery with n=3 or n=4
 fmp_op <- ggplot(fmp_profit_2, aes(x = Fishery, y = total_operating_profit, fill=Fishery)) + geom_boxplot(show.legend = TRUE, outlier.shape = NA)
-fmp_op + coord_cartesian(ylim=c(-250000, 1500000)) + scale_y_continuous(breaks = seq(-250000, 1500000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())
+fmp_op + coord_cartesian(ylim=c(-250000, 1500000)) + scale_y_continuous(breaks = seq(-250000, 1500000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) +scale_fill_manual(values = c("Groundfish" = "#C6E6F0", "Highly Migratory Species" = "#90DFE3", "Lobster" = "#1EBEC7", "Scallop" = "#00797F", "Squid, Mackerel, Butterfish" = "#B1DC6B", "Striped Bass" = "#76BC21", "Summer Flounder, Scup, Black Sea Bass" = "#A8B8FF"))
 ```
 <br>
 
@@ -565,7 +565,7 @@ options(knitr.kable.NA= "C*") #Confidential data indicator
 gear_fmp_profit<- read.csv(file="Y:/Ardini_Cost_Survey/SAS_Cost_Survey/Profitability_Profiles/Calculate_Profit/Final/gear_fmp_boxplots.csv")
 gear_fmp_profit_2 <- subset(gear_fmp_profit, Gear_Fishery!="Gillnet-Monkfish" & Gear_Fishery!="Handgear-Other" & Gear_Fishery!="Longline-Highly Migratory Species" & Gear_Fishery!="Pot/Trap-Whelk" & Gear_Fishery!= "Trawl-Other") #Eliminate Gear_Fishery with n=3 or n=4
 gear_fmp_op <- ggplot(gear_fmp_profit_2, aes(x = Gear_Fishery, y = total_operating_profit, fill=Gear_Fishery)) + geom_boxplot(show.legend = TRUE, outlier.shape = NA)
-gear_fmp_op + coord_cartesian(ylim=c(-250000, 1500000)) + scale_y_continuous(breaks = seq(-250000, 1500000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())
+gear_fmp_op + coord_cartesian(ylim=c(-250000, 1500000)) + scale_y_continuous(breaks = seq(-250000, 1500000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) +scale_fill_manual(values = c("Gillnet-Other" = "#C6E6F0", "Handgear-Highly Migratory Species" = "#90DFE3", "Handgear-Striped Bass" = "#1EBEC7", "Handgear-Summer Flounder, Scup, BSB" = "#00797F", "Pot/Trap-Lobster" = "#B1DC6B", "Pot/Trap-Summer Flounder, Scup, BSB" = "#76BC21", "Scallop Dredge-Scallop" = "#A8B8FF", "Trawl-Groundfish" = "#FFAB38", "Trawl-Squid, Mackerel, Butterfish" = "#FF8400", "Trawl-Summer Flounder, Scup, BSB" = "#DB6015"))
 ```
 
 
@@ -600,7 +600,7 @@ colnames(gear_tp_stats_6) <- c("Gear", "Response", "Sample", "Response (%)", "Me
 gear_tp_stats_6 %>% knitr::kable(label = NA, caption = "Total Profit by Primary Gear", row.names = FALSE)  %>% footnote(general = "C* indicates data not presented to protect confidentiality")
 
 gear_tp <- ggplot(gear_profit_2, aes(x = Gear, y = total_profit, fill=Gear)) + geom_boxplot(show.legend = FALSE, outlier.shape = NA)
-gear_tp + coord_cartesian(ylim=c(-500000, 1000000)) + scale_y_continuous(breaks = seq(-500000, 1000000, by=250000))
+gear_tp + coord_cartesian(ylim=c(-500000, 1000000)) + scale_y_continuous(breaks = seq(-500000, 1000000, by=250000)) +scale_fill_manual(values = c("Gillnet" = "#C6E6F0", "Handgear" = "#90DFE3", "Pot/Trap" = "#B1DC6B", "Scallop Dredge" = "#A8B8FF", "Trawl" = "#FFAB38"))
 ```
 <br>
 
@@ -633,7 +633,7 @@ colnames(fmp_tp_stats_6) <- c("Fishery", "Response", "Sample", "Response (%)", "
 fmp_tp_stats_6 %>% knitr::kable(label = NA, caption = "Total Profit by Primary Fishery", row.names = FALSE)  %>% footnote(general = "C* indicates data not presented to protect confidentiality")
 
 fmp_tp <- ggplot(fmp_profit_2, aes(x = Fishery, y = total_profit, fill=Fishery)) + geom_boxplot(show.legend = TRUE, outlier.shape = NA)
-fmp_tp + coord_cartesian(ylim=c(-500000, 1000000)) + scale_y_continuous(breaks = seq(-500000, 1000000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())
+fmp_tp + coord_cartesian(ylim=c(-500000, 1000000)) + scale_y_continuous(breaks = seq(-500000, 1000000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) +scale_fill_manual(values = c("Groundfish" = "#C6E6F0", "Highly Migratory Species" = "#90DFE3", "Lobster" = "#1EBEC7", "Scallop" = "#00797F", "Squid, Mackerel, Butterfish" = "#B1DC6B", "Striped Bass" = "#76BC21", "Summer Flounder, Scup, Black Sea Bass" = "#A8B8FF"))
 ```
 <br>
 
@@ -666,7 +666,7 @@ colnames(gear_fmp_tp_stats_6) <- c("Gear-Fishery", "Response", "Sample", "Respon
 gear_fmp_tp_stats_6 %>% knitr::kable(label = NA, caption = "Total Profit by Primary Gear/Fishery", row.names = FALSE)  %>% footnote(general = "C* indicates data not presented to protect confidentiality")
 
 gear_fmp_tp <- ggplot(gear_fmp_profit_2, aes(x = Gear_Fishery, y = total_profit, fill=Gear_Fishery)) + geom_boxplot(show.legend = TRUE, outlier.shape = NA)
-gear_fmp_tp + coord_cartesian(ylim=c(-500000, 1000000)) + scale_y_continuous(breaks = seq(-500000, 1000000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank())
+gear_fmp_tp + coord_cartesian(ylim=c(-500000, 1000000)) + scale_y_continuous(breaks = seq(-500000, 1000000, by=250000)) + theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) +scale_fill_manual(values = c("Gillnet-Other" = "#C6E6F0", "Handgear-Highly Migratory Species" = "#90DFE3", "Handgear-Striped Bass" = "#1EBEC7", "Handgear-Summer Flounder, Scup, BSB" = "#00797F", "Pot/Trap-Lobster" = "#B1DC6B", "Pot/Trap-Summer Flounder, Scup, BSB" = "#76BC21", "Scallop Dredge-Scallop" = "#A8B8FF", "Trawl-Groundfish" = "#FFAB38", "Trawl-Squid, Mackerel, Butterfish" = "#FF8400", "Trawl-Summer Flounder, Scup, BSB" = "#DB6015"))
 ```
 
 
