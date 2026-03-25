@@ -49,7 +49,7 @@ Final_combine: Merges datasets generated in scripts #1-4 and retains observation
 
 input_files: csv files produced from the SAS script, "6_final_combine"
 
-docs: figures for the site are contained within the SSB_Profit_Profiles_files/figure-html sub-folder.
+docs: Figures for the site are contained within the SSB_Profit_Profiles_files/figure-html sub-folder.
 
 references: Includes links to all papers referenced in the site.
 
